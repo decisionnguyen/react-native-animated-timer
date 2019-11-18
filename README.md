@@ -20,7 +20,7 @@ A simple animated timer implementing [react-native-reanimated](https://github.co
 
 ## Usage
 
-    import {Timer} from  'react-native-animated-timer';
+    import {Timer} from  'react-native-reanimated-slideshow';
     
     <Timer
 	    radius={350}

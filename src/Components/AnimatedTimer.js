@@ -38,6 +38,7 @@ const AnimatedTimer = ({ ...props }) => {
     radius = 100,
     time = 5000,
     textStyle,
+    textPosition,
     showTime = false,
     onTimeFinished,
     loop = true,
@@ -163,8 +164,8 @@ const AnimatedTimer = ({ ...props }) => {
   const lastBackgroundRef = useRef(lastBackground);
   lastBackgroundRef.current = lastBackground;
 
-  const normalizedRadius = radius - radius * 0.4 * 2;
-  const circumference = normalizedRadius * 2 * Math.PI;
+  const normalizedRadius = 0;
+  const circumference = 0;
 
   const strokeDashoffset = sub(
     circumference,
@@ -441,10 +442,10 @@ const AnimatedTimer = ({ ...props }) => {
               <AnimatedCircle
                 stroke={'url(#backgroundImage)'}
                 fill={'transparent'}
-                strokeWidth={radius * 0.4}
+                strokeWidth={0}
                 strokeDasharray={circumference + ' ' + circumference}
                 style={{ strokeDashoffset }}
-                strokeWidth={radius * 0.4}
+                strokeWidth={0}
                 r={normalizedRadius}
                 cx={(radius * 0.8) / 2}
                 cy={(radius * 0.8) / 2}
@@ -459,7 +460,7 @@ const AnimatedTimer = ({ ...props }) => {
             backgroundColor: 'transparent',
             height: '100%',
             width: '100%',
-            justifyContent: 'center',
+            justifyContent: textPosition,
           }}>
           <View style={{
             height: 5,
@@ -472,17 +473,13 @@ const AnimatedTimer = ({ ...props }) => {
               style={{ height: 5, width: `${showedTime}%`, backgroundColor: '#FF5252' }}
             />
           </View>
-          {/* <Text
+          <Text
             style={[
-              {
-                color: 'white',
-                textAlign: 'center',
-                fontSize: radius * 0.4,
-              },
               textStyle,
             ]}>
-            {showedTime}
-          </Text> */}
+            {/* {showedTime} */}
+            {backgrounds.indexOf(lastBackgroundRef.current)+ 1}/{backgrounds.length}
+          </Text>
         </View>
       ) : null}
     </View>
