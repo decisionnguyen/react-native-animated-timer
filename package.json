@@ -1,21 +1,21 @@
 {
-  "name": "react-native-animated-timer",
-  "version": "1.1.3",
-  "description": "Animated timer for RN",
+  "name": "react-native-reanimated-slideshow",
+  "version": "1.0.0",
+  "description": "Animated slideshow timer for RN",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dalisalvador/react-native-animated-timer.git"
+    "url": "git+https://github.com/cedricsandars/react-native-animated-timer.git"
   },
   "author": "FSE",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dalisalvador/react-native-animated-timer/issues"
   },
-  "homepage": "https://github.com/dalisalvador/react-native-animated-timer#readme",
+  "homepage": "https://github.com/cedricsandars/react-native-animated-timer#readme",
   "dependencies": {
     "react-native-gesture-handler": "^1.4.1",
     "react-native-reanimated": "^1.2.0",

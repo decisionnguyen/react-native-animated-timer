@@ -1,7 +1,7 @@
-import React, {Fragment, useState, useEffect, useRef} from 'react';
-import {View, Text, YellowBox} from 'react-native';
-import Animated, {Easing} from 'react-native-reanimated';
-import Svg, {Circle, Defs, Pattern, Image, ClipPath} from 'react-native-svg';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
+import { View, Text, YellowBox } from 'react-native';
+import Animated, { Easing } from 'react-native-reanimated';
+import Svg, { Circle, Defs, Pattern, Image, ClipPath } from 'react-native-svg';
 
 // //TODO:CHECK NOT USING THIS LIFECYCLE METHODS. Ignoring change of lifecycle react-native
 YellowBox.ignoreWarnings([
@@ -33,7 +33,7 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const clock = new Clock();
 const pauseFlag = new Value(0);
 
-const AnimatedTimer = ({...props}) => {
+const AnimatedTimer = ({ ...props }) => {
   const {
     radius = 100,
     time = 5000,
@@ -63,6 +63,7 @@ const AnimatedTimer = ({...props}) => {
       frameTime: new Value(0),
       timeSyncedWithClock: new Value(0),
       deltaTime: new Value(0),
+      translateX: new Value(0)
     };
 
     return block([
@@ -81,9 +82,9 @@ const AnimatedTimer = ({...props}) => {
         call([state.frameTime, state.deltaTime], value => {
           if (showMilli) {
             setShowedTime(
-              Number.parseFloat(value[0] / 1000).toFixed(showMilli),
+              Number.parseFloat((value[0] / 1000) * 10).toFixed(showMilli),
             );
-          } else setShowedTime(Math.floor(value[0] / 1000));
+          } else setShowedTime((Math.floor(value[0] / 1000) * 10));
           if (checkPoints && value[1] < 150) {
             checkPoints.map((checkPoint, id) => {
               if (
@@ -117,7 +118,7 @@ const AnimatedTimer = ({...props}) => {
                   setLastBackground(backgroundRef.current);
                   setBackground(
                     backgrounds[
-                      backgrounds.indexOf(lastBackgroundRef.current) + 1
+                    backgrounds.indexOf(lastBackgroundRef.current) + 1
                     ],
                   );
                 } else {
@@ -363,17 +364,14 @@ const AnimatedTimer = ({...props}) => {
     <View
       elevation={5}
       style={{
-        height: radius * 0.8,
-        width: radius * 0.8,
-        borderRadius: radius * 0.8 * 4,
+        // height: radius * 0.8,
+        // width: radius * 0.8,
+        // borderRadius: radius * 0.8 * 4,
+        // height: 300,
+        // width: 300,
+        flex:1,
+        borderRadius: 0,
         backgroundColor: 'transparent',
-        shadowOpacity: 1,
-        shadowOffset: {
-          width: 0,
-          height: 5,
-        },
-        shadowColor: '#000000',
-        shadowRadius: 3,
       }}>
       <Svg height="100%" width="100%">
         {isHexColor(lastBackground) || colourNameToHex(lastBackground) ? (
@@ -384,8 +382,8 @@ const AnimatedTimer = ({...props}) => {
             cy={(radius * 0.8) / 2}
           />
         ) : (
-          <Fragment>
-            <Defs>
+            <Fragment>
+              {/* <Defs>
               <ClipPath id="clip">
                 <AnimatedCircle
                   r={normalizedRadius * 2}
@@ -393,19 +391,19 @@ const AnimatedTimer = ({...props}) => {
                   cy={(radius * 0.8) / 2}
                 />
               </ClipPath>
-            </Defs>
+            </Defs> */}
 
-            <Image
-              x="0"
-              y="0"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="xMidYMid slice"
-              href={lastBackground}
-              clipPath="url(#clip)"
-            />
-          </Fragment>
-        )}
+              <Image
+                x="0"
+                y="0"
+                width={(100+showedTime/2)+'%'}
+                height={(100+showedTime/10)+'%'}
+                preserveAspectRatio="xMidYMid slice"
+                href={lastBackground}
+                clipPath="url(#clip)"
+              />
+            </Fragment>
+          )}
 
         {isHexColor(background) || colourNameToHex(background) ? (
           <AnimatedCircle
@@ -413,15 +411,15 @@ const AnimatedTimer = ({...props}) => {
             fill={'transparent'}
             strokeWidth={radius * 0.4}
             strokeDasharray={circumference + ' ' + circumference}
-            style={{strokeDashoffset}}
+            style={{ strokeDashoffset }}
             strokeWidth={radius * 0.4}
             r={normalizedRadius}
             cx={(radius * 0.8) / 2}
             cy={(radius * 0.8) / 2}
           />
         ) : (
-          <Fragment>
-            <Defs>
+            <Fragment>
+              {/* <Defs>
               <Pattern
                 id="backgroundImage"
                 patternUnits="userSpaceOnUse"
@@ -438,21 +436,21 @@ const AnimatedTimer = ({...props}) => {
                   href={background}
                 />
               </Pattern>
-            </Defs>
+            </Defs> */}
 
-            <AnimatedCircle
-              stroke={'url(#backgroundImage)'}
-              fill={'transparent'}
-              strokeWidth={radius * 0.4}
-              strokeDasharray={circumference + ' ' + circumference}
-              style={{strokeDashoffset}}
-              strokeWidth={radius * 0.4}
-              r={normalizedRadius}
-              cx={(radius * 0.8) / 2}
-              cy={(radius * 0.8) / 2}
-            />
-          </Fragment>
-        )}
+              <AnimatedCircle
+                stroke={'url(#backgroundImage)'}
+                fill={'transparent'}
+                strokeWidth={radius * 0.4}
+                strokeDasharray={circumference + ' ' + circumference}
+                style={{ strokeDashoffset }}
+                strokeWidth={radius * 0.4}
+                r={normalizedRadius}
+                cx={(radius * 0.8) / 2}
+                cy={(radius * 0.8) / 2}
+              />
+            </Fragment>
+          )}
       </Svg>
       {showTime ? (
         <View
@@ -463,7 +461,18 @@ const AnimatedTimer = ({...props}) => {
             width: '100%',
             justifyContent: 'center',
           }}>
-          <Text
+          <View style={{
+            height: 5,
+            width: '100%',
+            backgroundColor: '#aaa',
+            position:'absolute',
+            bottom:0
+          }}>
+            <View
+              style={{ height: 5, width: `${showedTime}%`, backgroundColor: '#FF5252' }}
+            />
+          </View>
+          {/* <Text
             style={[
               {
                 color: 'white',
@@ -473,7 +482,7 @@ const AnimatedTimer = ({...props}) => {
               textStyle,
             ]}>
             {showedTime}
-          </Text>
+          </Text> */}
         </View>
       ) : null}
     </View>
