@@ -1,3 +1,9 @@
+# Motivation
+
+Gallery/Slideshow timer component for react native using react-native-reanimated library
+
+# Original author
+https://github.com/dalisalvador/react-native-animated-timer
 
 # react-native-animated-timer     ⏰
 
@@ -12,7 +18,6 @@ A simple animated timer implementing [react-native-reanimated](https://github.co
 <div>
 
 
-
 ## Installation
 `npm install react-native-animated-timer`
 
@@ -25,7 +30,7 @@ A simple animated timer implementing [react-native-reanimated](https://github.co
 	    time={10000}
 	    checkPoints={[{time: 1210.23, callback: () => alert('First Check Point')},
 	    	        {time: 5310, callback: () => alert('Second Check Point')}]}
-	    backgrounds={['blue', 'red', 'http://myimage.com/img1.png']}
+	    backgrounds={['http://myimage.com/img1.png']}
 	    showTime={true}
 	    onTimeFinished={() => alert('AnimatedTimer has finished')}
 	    loop={true}
@@ -44,7 +49,7 @@ A simple animated timer implementing [react-native-reanimated](https://github.co
 |----------------|-------------------------------|-----------------------------|--|--|
 |radius|`number`|`100`|`true`|radius of the circle
 |time|`number`|`5000`|`true`|time of one lap in milliseconds
-|backgrounds|`array`|`none`|`false`|array of colors or images that will appear in sequence (left-right). Example: `backgrounds={['blue',require('./img/image1'), 'red','https://myimage.com/img2.png']}`
+|backgrounds|`array`|`none`|`false`|array of images that will appear in sequence (left-right). Example: `backgrounds={['blue',require('./img/image1'), 'red','https://myimage.com/img2.png']}`
 |checkPoints|`array`|`none`|`false`|array of objects containing a callback to be executed at a particular time (precision ~65ms). Example:`checkPoints={[{ time: 1120, callback: () => myfunc1()}, { time: 5120, callback: () => myfunc2()}]}`
 |onTimeFinished|`function`|`none`|`false`|Executes function when the timer finishes.
 |pause|`boolean`|`false`|`false`|Stops the timer
