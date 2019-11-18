@@ -11,15 +11,12 @@ A simple animated timer implementing [react-native-reanimated](https://github.co
  
 ## Examples
 <div>
-<img src="./assets/onfinish.gif" width="230" height="500" />
-<img src="./assets/imageandcolors.gif" width="230" height="500" />
-<img src="./assets/checkpoints.gif" width="230" height="500" />
-<img src="./assets/pause.gif" width="230" height="500" />
+<img src="./assets/slideshow.gif" width="230" height="500" />
 <div>
 
 
 ## Installation
-`npm install react-native-animated-timer`
+`npm install react-native-reanimated-slideshow`
 
 ## Usage
 
